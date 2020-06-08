@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './Courses.css';
 
 import Course from '../Course/Course';
+import { Route } from 'react-router-dom';
 
 class Courses extends Component {
     state = {
@@ -12,6 +13,17 @@ class Courses extends Component {
         ]
     }
 
+    postSelectedHandler = (id,title) => {
+        console.log("post id: ",id," is clicked");
+        this.props.history.push('/courses/' + id);
+        this.props.history.push('?title='+title)
+        // <Course
+        //     key = {id}
+        //     //title = {course.title}
+        //     id = {id}
+        // />
+    }
+
     render () {
         return (
             <div>
@@ -20,17 +32,13 @@ class Courses extends Component {
                     {
                         this.state.courses.map( course => {
                             return (
-                                <Course
-                                    key = {course.id}
-                                    title = {course.title}
-                                    id = {course.id}
-                                />
+                                <article className="Course" key={course.id} onClick={ () => this.postSelectedHandler(course.id, course.title)}>{course.title}</article>
                             );
-                            //<article className="Course" key={course.id}>{course.title}</article>;
+                            
                         } )
                     }
                 </section>
-
+                <Route path={this.props.match.url + '/:id'}  exact component={Course}/>
                 
             </div>
         );
