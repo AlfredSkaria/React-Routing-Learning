@@ -11,6 +11,7 @@ class Course extends Component {
   }
 
   componentDidUpdate() {
+    console.log("ComponentDidUpdate [Course.js]");
     this.loadData();
   }
 

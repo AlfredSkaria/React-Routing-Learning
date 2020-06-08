@@ -17,11 +17,6 @@ class Courses extends Component {
         console.log("post id: ",id," is clicked");
         this.props.history.push('/courses/' + id);
         this.props.history.push('?title='+title)
-        // <Course
-        //     key = {id}
-        //     //title = {course.title}
-        //     id = {id}
-        // />
     }
 
     render () {

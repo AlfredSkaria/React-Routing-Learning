@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./Home.css";
-import { Route, NavLink } from "react-router-dom";
+import { Route, NavLink, Switch, Redirect } from "react-router-dom";
 import Users from "./Users/Users";
 import Courses from "./Courses/Courses";
 class Home extends Component {
@@ -23,9 +23,12 @@ class Home extends Component {
             </ul>
           </nav>
         </header>
-
-        <Route path="/users" component={Users} />
-        <Route path="/courses" component={Courses} />
+        <Switch>
+          <Route path="/users" component={Users} />
+          <Route path="/courses" component={Courses} />
+          <Redirect from="/all-courses" to="/courses"/>
+          <Route render={ () => <h1>Not Found</h1>}/>
+        </Switch>
       </div>
     );
   }
